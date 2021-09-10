@@ -7,19 +7,14 @@
 
 template <typename T>
 sStr NumToHex(T Num);
-template sStr NumToHex<char>(char);
-template sStr NumToHex<short>(short);
-template sStr NumToHex<int>(int);
-template sStr NumToHex<long>(long);
 
 /* C++ file */
 template <typename T>
 sStr NumToHex(T Num) {
     sStr Result;
-    long HexDigits = sizeof(Num) * 2;
+    short HexDigits = sizeof(Num) * 2;
     for (int i = 0; i < HexDigits; i++) {
-        long ByteCase = Num >> (4 * i);
-        ByteCase &= 15;
+        char ByteCase = (Num >> (4 * i)) & 15;
         switch (ByteCase) {
         case 10:
             Result.insert(0, "A");
